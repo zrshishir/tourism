@@ -1,0 +1,130 @@
+/* Custom Stylesheet */
+/**
+ * Use this file to override Materialize files so you can update
+ * the core Materialize files in the future
+ *
+ * Made By MaterializeCSS.com
+ */
+.container{
+  width: 95%;
+}
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+  font-size: inherit;
+}
+nav .brand-logo {
+    color: #000;
+    padding-left: 2%;
+}
+nav a{
+      color: #000;
+}
+#form1{
+  margin-left:200px;
+}
+.side-nav li a {
+  text-decoration:none;
+}
+#searchResults2{
+  background-color:#666666;
+}
+#searchResults{
+  background-color:#666666;
+}
+.right li a{
+  padding-right:2em;
+  text-decoration:none;
+  color: #424242;
+}
+nav .input-field input{
+  background: green;
+}
+nav .input-field label i{
+  color:#9e9e9e !important;
+}
+
+img{
+      margin-bottom: 20px;
+}
+
+
+
+nav ul a,
+nav .brand-logo {
+  color: #444;
+}
+
+p {
+  line-height: 2rem;
+}
+
+.sidenav-trigger {
+  color: #26a69a;
+}
+
+.parallax-container {
+  min-height: 380px;
+  line-height: 0;
+  height: auto;
+  color: rgba(255,255,255,.9);
+}
+  .parallax-container .section {
+    width: 100%;
+  }
+
+@media only screen and (max-width : 992px) {
+  .parallax-container .section {
+    position: absolute;
+    top: 40%;
+
+  }
+  #index-banner .section {
+    top: 10%;
+  }
+}
+
+@media only screen and (max-width : 600px) {
+  #index-banner .section {
+    top: 0;
+  }
+   .detail_img{
+  margin: auto; width:100%;
+}
+ 
+}
+
+.icon-block {
+  padding: 0 15px;
+}
+.icon-block .material-icons {
+  font-size: inherit;
+}
+
+footer.page-footer {
+  margin: 0;
+}
+.search-form{
+  background: #fff;
+}
+.detail_img{
+  margin: auto; width: 33.33%;
+}
+/*detail page*/
+nav span{
+  margin-left: 6px;
+}
+.avatar {
+    vertical-align: middle;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
+.remove_shadow{
+  box-shadow: 0 0px 0px 0 rgba(0, 0, 0, 0), 0 0px 0px 0px rgba(0, 0, 0, 0), 0 0px 0px 0 rgba(0, 0, 0,0);
+}
+b {
+    vertical-align: middle;
+     margin-left: 8px; 
+}
