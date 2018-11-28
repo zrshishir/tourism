@@ -14,6 +14,7 @@
 // posting
 Route::get('posting', 'StatusPosting\StatusPostingController@posting');
 Route::get('allposts', 'StatusPosting\StatusPostingController@allposts');
+Route::get('likeStatus', 'StatusPosting\StatusPostingController@likeStatus');
 
 Route::group(['middleware' => ['web']], function(){
     if (!env('INSTALLED', false)) {

@@ -1,5 +1,22 @@
+function likeStatus(statusId){
+    var url = $('#hiddenUrl').val();
+    console.log(statusId);
+    $.ajax({
+       url: url + "/likeStatus",
+       method: "GET",
+       dataType: "json",
+       processData: false,
+       data:{'statusId': statusId},
+       
+       success: function(data){
+           console.log(data);
+       }
+    })
+}
+
 $(document).ready(function(){
     var url = $('#hiddenUrl').val();
+    var urlimg = url + "/img/avatar.png";
     $.ajax({
         url: url  + "/allposts",
         method: 'get',
@@ -8,27 +25,44 @@ $(document).ready(function(){
         // contentType: true,
         
         success: function (data) {
-            console.log(data);
-            // $('#modal_title').text(customer_name);
-            // var t = $('#customer_users_datatable').DataTable();
-            // t.rows().remove().draw();
             for (var i = 0; i < data.length; i++) {
-                $("<div class='col-md-2'><img class='align-self-start mr-3' src='{{ url("+'img/avatar.png'+") }}' alt='Generic placeholder image' height='64px' width='64px'></div>").appendTo( "#allposts" );
-                // t.row.add([
-                //     i + 1,
-                //     data[i].name,
-                //     data[i].email,
-                //     '<span class="label label-info">User</span>',
-                //     '<span ' + ((data[i].status == 'Active') ? 'class="label label-success"' : 'class="label label-danger"') + '>' +
-                //     data[i].status + '</span>'
-                // ]).draw(false);
+                $( "#allposts" ).append( '<div class="col-md-2"><img class="align-self-start mr-3" src="'+ urlimg +'" alt="Generic placeholder image" height="64px" width="64px"></div>'
+                +'<div class="col-md-10 media-body" >'
+                +'<h5 class="mt-0">Top-aligned media</h5>'
+                +'<p>'+data[i].post+'</p>'
+                +'<button type="button" class="btn btn-small btn-primary"  onclick="likeStatus('+data[i].id+')">like</button>'
+                +'<button type="button" class="btn btn-secondary btn-small" >comment</button>'
+                +'<br/>'
+                +'<br/>'
+               
+                +'<div class="row">'
+                  +'<div class="row media">'
+                        +'<div class="col-md-1">'
+                            +'<img class="align-self-start mr-3" src="'+ urlimg +'" alt="Generic placeholder image" height="32px" width="32px">'
+                        +'</div>'
+                        +'<div class="col-md-11 media-body">'
+                            +'<h5 class="mt-0">Top-aligned media</h5>'
+                            +'<p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>'
+                            +'<p>Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>'
+                            +'<button type="button" class="btn btn-small btn-primary" >like</button>'
+                            +'<button type="button" class="btn btn-secondary btn-small" >reply</button>'
+                            +'<br/>'
+                        +'</div>'
+                    +'</div>'
+                    +'<br/>'
+                    +'<textarea class="form-control" placeholder="comment for status" name="comment" id="comment" cols="60" rows="1"></textarea>'
+                    +'<button class="btn btn-small btn-primary" type="button">Post</button>'
+                +'</div>'
+            +'</div>' );
             }
-            // $('#customer_users').modal('show');
+            $('#allposts').load();
+            return true;
         },
+       
     });
 
 
-    $('#postNow').on('click', function(){
+    $('#postNow').on('submit', function(){
         var postingStatus = $('#status').val();
         
         // var url = $('#hiddenUrl').val();

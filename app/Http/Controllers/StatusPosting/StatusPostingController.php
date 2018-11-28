@@ -14,7 +14,6 @@ class StatusPostingController extends Controller
         return response()->json($posts);
     }
     public function posting(Request $request){
-        
         Log::info($request->all());
         $status = $request->input('postingStatus');Log::info($status);
         $user_id = 1;
@@ -29,5 +28,10 @@ class StatusPostingController extends Controller
             return $request->session()->flash('error_msg', $in);
         }
         
+    }
+    public function likeStatus(Request $request){
+        
+        Log::info($request->all());
+        return response()->json($request->all());
     }
 }

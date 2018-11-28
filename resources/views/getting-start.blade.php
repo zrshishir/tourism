@@ -46,7 +46,7 @@
                         {!! $logo !!}
                     </p>
                 @else 
-                    <h3>HRrequest</h3>
+                    <h3>Tourism</h3>
                 @endif
                 </a>
 
@@ -70,14 +70,14 @@
     <div class="container">
     <div class="col-md-2"></div>
         <div class="col-md-8">
-            <div class="row input-group">
-                <!-- <form action="{{ url('posting') }}" id="frm" method="post"> -->
-                    <textarea class="form-control" placeholder="share your experience" name="postingStatus" id="status" cols="90" rows="5"></textarea>
+            <div class="row input-group" >
+              
+                    <textarea class="form-control"  placeholder="share your experience" name="postingStatus" id="status" cols="90" rows="5"></textarea>
                     <div class="custom-file">
                         <!-- <input type="file" class="custom-file-input" id="inputGroupFile02"> -->
-                        <button class="btn btn-small btn-primary" type="submit" id="postNow">Post Now</button>
+                        <button class="btn btn-small btn-primary" type="submit" id="postNow" >Post Now</button>
                     </div>
-                <!-- </form> -->
+              
             </div>
 
             <div class="row media" id="allposts">
@@ -89,8 +89,8 @@
                     <h5 class="mt-0">Top-aligned media</h5>
                     <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
                     <p>Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-                    <button type="button" class="btn btn-small btn-primary" disabled>like</button>
-                    <button type="button" class="btn btn-secondary btn-small" disabled>comment</button>
+                    <button type="button" class="btn btn-small btn-primary" onclick="likeStatus(1)">like</button>
+                    <button type="button" class="btn btn-secondary btn-small">comment</button>
                     <br/>
                     <br/>
                     <!-- comment section -->
@@ -103,8 +103,8 @@
                                 <h5 class="mt-0">Top-aligned media</h5>
                                 <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
                                 <p>Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-                                <button type="button" class="btn btn-small btn-primary" disabled>like</button>
-                                <button type="button" class="btn btn-secondary btn-small" disabled>reply</button>
+                                <button type="button" class="btn btn-small btn-primary">like</button>
+                                <button type="button" class="btn btn-secondary btn-small">reply</button>
                                 <br/>
                             </div>
                         </div>
