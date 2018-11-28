@@ -13,7 +13,7 @@ $(document).ready(function(){
             // var t = $('#customer_users_datatable').DataTable();
             // t.rows().remove().draw();
             for (var i = 0; i < data.length; i++) {
-                $( '<div class="col-md-2"><img class="align-self-start mr-3" src="{{ url('+"'img/avatar.png'"+') }}'+"  alt="Generic placeholder image" height="64px" width="64px"></div>' ).appendTo( "#allposts" );
+                $("<div class='col-md-2'><img class='align-self-start mr-3' src='{{ url("+'img/avatar.png'+") }}' alt='Generic placeholder image' height='64px' width='64px'></div>").appendTo( "#allposts" );
                 // t.row.add([
                 //     i + 1,
                 //     data[i].name,
