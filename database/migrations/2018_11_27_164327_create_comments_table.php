@@ -19,6 +19,7 @@ class CreateCommentsTable extends Migration
             $table->text('comment');
             $table->integer('votes')->default(0);
             $table->integer('spam')->default(0);
+            $table->integer('post_id')->default(0);
             $table->integer('reply_id')->default(0);
             $table->string('page_id')->default(0);
             $table->integer('users_id');

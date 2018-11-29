@@ -12,6 +12,7 @@
 */
 
 // posting
+Route::get('postData', 'StatusPosting\StatusPostingController@postData');
 Route::get('posting', 'StatusPosting\StatusPostingController@posting');
 Route::get('allposts', 'StatusPosting\StatusPostingController@allposts');
 Route::get('likeStatus', 'StatusPosting\StatusPostingController@likeStatus');

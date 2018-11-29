@@ -1,15 +1,15 @@
 function likeStatus(statusId){
     var url = $('#hiddenUrl').val();
-    console.log(statusId);
     $.ajax({
        url: url + "/likeStatus",
        method: "GET",
        dataType: "json",
-       processData: false,
+    //    processData: false,
        data:{'statusId': statusId},
        
        success: function(data){
            console.log(data);
+           $("#likeCount"+statusId).text(data[0]);
        }
     })
 }
@@ -31,7 +31,7 @@ $(document).ready(function(){
                 +'<h5 class="mt-0">Top-aligned media</h5>'
                 +'<p>'+data[i].post+'</p>'
                 +'<button type="button" class="btn btn-small btn-primary"  onclick="likeStatus('+data[i].id+')">like</button>'
-                +'<button type="button" class="btn btn-secondary btn-small" >comment</button>'
+                +'<button type="button" class="btn btn-secondary btn-small" disabled id="likeCount'+data[i].id+'">'+data[i].like+'</button>'
                 +'<br/>'
                 +'<br/>'
                
@@ -44,7 +44,8 @@ $(document).ready(function(){
                             +'<h5 class="mt-0">Top-aligned media</h5>'
                             +'<p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>'
                             +'<p>Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>'
-                            +'<button type="button" class="btn btn-small btn-primary" >like</button>'
+                            +'<button type="button" class="btn btn-small btn-primary" onclick="likeComment()">like</button>'
+                            +'<button type="button" class="btn btn-secondary btn-small" disabled id="likeCommentCount">0</button>'
                             +'<button type="button" class="btn btn-secondary btn-small" >reply</button>'
                             +'<br/>'
                         +'</div>'
