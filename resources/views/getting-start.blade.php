@@ -72,7 +72,7 @@
         <div class="col-md-8">
             <div class="row input-group" >
               
-                    <textarea class="form-control"  placeholder="share your experience" name="postingStatus" id="status" cols="90" rows="5"></textarea>
+                    <textarea class="form-control"  placeholder="share your experience" name="postingStatus" id="status" cols="90" rows="3"></textarea>
                     <div class="custom-file">
                         <!-- <input type="file" class="custom-file-input" id="inputGroupFile02"> -->
                         <button class="btn btn-small btn-primary" type="submit" id="postNow" >Post Now</button>

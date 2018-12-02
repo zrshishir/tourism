@@ -25,18 +25,6 @@ $(document).ready(function(){
         // contentType: true,
         
         success: function (data) {
-            // console.log(data[0].comments);
-            // for(var i = 0; i < data.length; i++){
-            //     console.log(Array.isArray(data[i].comments));
-            //     // if(data[i].comments){
-            //     //     console.log('yes');
-            //     // }
-            //     // console.log(data[i].comments);
-            // }
-            // // if(data[0].comments){
-            // //     console.log(data[0].comments[0].comment);
-            // // }
-            // return true;
             for (var i = 0; i < data.length; i++) {
                 $( "#allposts" ).append( '<div class="col-md-2"><img class="align-self-start mr-3" src="'+ urlimg +'" alt="Generic placeholder image" height="64px" width="64px"></div>'
                 +'<div class="col-md-10 media-body" >'
@@ -45,10 +33,28 @@ $(document).ready(function(){
                 +'<button type="button" class="btn btn-small btn-primary"  onclick="likeStatus('+data[i].id+')">like</button>'
                 +'<button type="button" class="btn btn-secondary btn-small" disabled id="likeCount'+data[i].id+'">'+data[i].like+'</button>'
                 +'<br/>'
-                +'<br/>'+
-                    ((Array.isArray(data[i].comments))?(makeString(data[i].comments, data[i].id)):'</div>')
-                
-             );
+                +'<br/>'
+               
+                +'<div class="row">'
+                  +'<div class="row media">'
+                        +'<div class="col-md-1">'
+                            +'<img class="align-self-start mr-3" src="'+ urlimg +'" alt="Generic placeholder image" height="32px" width="32px">'
+                        +'</div>'
+                        +'<div class="col-md-11 media-body">'
+                            +'<h5 class="mt-0">Top-aligned media</h5>'
+                            +'<p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>'
+                            +'<p>Donec sed odio dui. Nullam quis risus eget urna mollis ornare vel eu leo. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>'
+                            +'<button type="button" class="btn btn-small btn-primary" onclick="likeComment()">like</button>'
+                            +'<button type="button" class="btn btn-secondary btn-small" disabled id="likeCommentCount">0</button>'
+                            +'<button type="button" class="btn btn-secondary btn-small" >reply</button>'
+                            +'<br/>'
+                        +'</div>'
+                    +'</div>'
+                    +'<br/>'
+                    +'<textarea class="form-control" placeholder="comment for status" name="comment" id="comment" cols="60" rows="1"></textarea>'
+                    +'<button class="btn btn-small btn-primary" type="button">Post</button>'
+                +'</div>'
+            +'</div>' );
             }
             $('#allposts').load();
             return true;
@@ -56,24 +62,6 @@ $(document).ready(function(){
        
     });
 
-    function makeString(comments, postId){
-        var str = '';
-        for (var i = comments.length - 1; i >= 0; i--) {
-             str += '<div class="row"><div class="row media">'
-                                +'<div class="col-md-1">'
-                                    +'<img class="align-self-start mr-3" src="'+ urlimg +'" alt="Generic placeholder image" height="32px" width="32px">'
-                                +'</div>'
-                                +'<div class="col-md-11 media-body">'
-                                    +'<h5 class="mt-0">Top-aligned media</h5>'
-                                    +'<p>'+comments[i].comment+'</p>'
-                                    +'</div>'
-                                +'</div>'
-                             +'</div>'
-        }
-        str +=  '<textarea class="form-control" placeholder="comment for status" name="comment" id="comment" cols="60" rows="1"></textarea>'
-                 +'<button class="btn btn-small btn-primary" type="button" onclick="postComment('+postId+')">Post</button>' + '</br>'
-        return str;
-    }
 
     $('#postNow').on('submit', function(){
         var postingStatus = $('#status').val();

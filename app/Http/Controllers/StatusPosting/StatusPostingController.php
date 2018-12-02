@@ -10,14 +10,24 @@ use Log, Session, DB;
 class StatusPostingController extends Controller
 {
     public function postData(Post $post){
-        $datas = $post->load('comments');
-        dd($datas);
-        $posts['post'] = Post::get();
-        $posts['post'][] = Post::get()->posts;
+        $datas = $post->with(['comments', 'likes'])->get();
+        // foreach ($datas as $key => $value) {
+        //     echo $value->likes;
+        //     if(is_array($value->likes)){
+        //         dd('shishir');
+        //     }; dd('yes');
+        //     // echo $value->post. "</br>";
+        //     // if($value->comments == 'comments'){
+        //     //     dd('exit');
+        //     // }
+        //     echo 'title = '. $key . '   and value is = '. $value . "</br>";dd('exit');
+        // }
+        return response()->json($datas);
+       
         dd($posts);
     }
-    public function allposts(){
-        $posts = Post::all();
+    public function allposts(Post $post){
+        $posts = $post->with(['comments', 'likes'])->get();
         return response()->json($posts);
     }
     public function posting(Request $request){
