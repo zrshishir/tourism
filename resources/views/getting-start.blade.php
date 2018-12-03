@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="email marketing web application">
     <meta name="author" content="xCoder.io">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- <meta name="csrf-token" content="{{ csrf_token() }}"> -->
     <title>Tourism</title>
     <!-- core CSS -->
@@ -75,7 +76,7 @@
                     <textarea class="form-control"  placeholder="share your experience" name="postingStatus" id="status" cols="90" rows="3"></textarea>
                     <div class="custom-file">
                         <!-- <input type="file" class="custom-file-input" id="inputGroupFile02"> -->
-                        <button class="btn btn-small btn-primary" type="submit" id="postNow" >Post Now</button>
+                        <button class="btn btn-small btn-primary" type="submit"onclick="postingStatus()" id="postNow" >Post Now</button>
                     </div>
               
             </div>

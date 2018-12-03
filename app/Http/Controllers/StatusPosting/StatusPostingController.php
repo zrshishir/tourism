@@ -24,22 +24,24 @@ class StatusPostingController extends Controller
         // }
         return response()->json($datas);
        
-        dd($posts);
     }
     public function allposts(Post $post){
         $posts = $post->with(['comments', 'likes'])->get();
         return response()->json($posts);
     }
     public function posting(Request $request){
-        $status = $request->input('postingStatus');
+        $status = $request->input('postingV');
+        
         $user_id = 1;
-        $in = Post::insert([
+        $id = Post::insertGetId([
             "post" => $status,
             "like" => 0,
             "users_id" => $user_id
         ]);
+        $recentPost = Post::find($id);
+        return  response()->json($recentPost);
         if ($in) {
-            return Session::flash('success_msg', 'thaks  for posting');
+            return response()->json(true);
         }else{
             return $request->session()->flash('error_msg', $in);
         }

@@ -14,31 +14,49 @@ function likeStatus(statusId){
     })
 }
 
+function postingStatus(){
+    var postingValue = $('#status').val();
+    var url = $('#hiddenUrl').val();
+    var urlimg = url + "/img/avatar.png";
+    
+    $.ajax({
+       url: url + "/posting",
+       method: "GET",
+       dataType: "json",
+    //    processData: false,
+       data:{'postingV': postingValue},
+       
+       success: function(data){
+           console.log(data);
+           $( "#allposts" ).prepend( '<div class="col-md-2"><img class="align-self-center mr-3" src="'+ urlimg +'" alt="Generic placeholder image" height="64px" width="64px"></div>'
+                +'<div class="col-md-10 media-body" >'
+                +'<h5 class="mt-0">Top-aligned media</h5>'
+                +'<p>'+data.post+'</p>'
+                +'<button type="button" class="btn btn-small btn-primary"  onclick="likeStatus('+data.id+')">like</button>'
+                +'<button type="button" class="btn btn-secondary btn-small" disabled id="likeCount'+data.id+'">'+data.like+'</button>'
+                +'<br/>'
+                +'<br/>'
+             );
+        $("#status").val('');
+        $('#allposts').load();
+       }
+    })
+}
+
 $(document).ready(function(){
     var url = $('#hiddenUrl').val();
     var urlimg = url + "/img/avatar.png";
     $.ajax({
         url: url  + "/allposts",
-        method: 'get',
+        method: 'GET',
         dataType: 'json',
         processData: false,
         // contentType: true,
         
         success: function (data) {
-            // console.log(data[0].comments);
-            // for(var i = 0; i < data.length; i++){
-            //     console.log(Array.isArray(data[i].comments));
-            //     // if(data[i].comments){
-            //     //     console.log('yes');
-            //     // }
-            //     // console.log(data[i].comments);
-            // }
-            // // if(data[0].comments){
-            // //     console.log(data[0].comments[0].comment);
-            // // }
-            // return true;
+         
             for (var i = 0; i < data.length; i++) {
-                $( "#allposts" ).append( '<div class="col-md-2"><img class="align-self-start mr-3" src="'+ urlimg +'" alt="Generic placeholder image" height="64px" width="64px"></div>'
+                $( "#allposts" ).append( '<div class="col-md-2"><img class="align-self-center mr-3" src="'+ urlimg +'" alt="Generic placeholder image" height="64px" width="64px"></div>'
                 +'<div class="col-md-10 media-body" >'
                 +'<h5 class="mt-0">Top-aligned media</h5>'
                 +'<p>'+data[i].post+'</p>'
@@ -47,7 +65,6 @@ $(document).ready(function(){
                 +'<br/>'
                 +'<br/>'+
                     ((Array.isArray(data[i].comments))?(makeString(data[i].comments, data[i].id)):'</div>')
-                
              );
             }
             $('#allposts').load();
@@ -61,7 +78,7 @@ $(document).ready(function(){
         for (var i = comments.length - 1; i >= 0; i--) {
              str += '<div class="row"><div class="row media">'
                                 +'<div class="col-md-1">'
-                                    +'<img class="align-self-start mr-3" src="'+ urlimg +'" alt="Generic placeholder image" height="32px" width="32px">'
+                                    +'<img class="align-self-center mr-3" src="'+ urlimg +'" alt="Generic placeholder image" height="32px" width="32px">'
                                 +'</div>'
                                 +'<div class="col-md-11 media-body">'
                                     +'<h5 class="mt-0">Top-aligned media</h5>'
@@ -75,39 +92,25 @@ $(document).ready(function(){
         return str;
     }
 
-    $('#postNow').on('submit', function(){
+    $('#postNow1').on('click', function(e){
+        e.preventDefault();
         var postingStatus = $('#status').val();
-        
-        // var url = $('#hiddenUrl').val();
-        // console.log(url);
+        console.log(postingStatus);
         
         $.ajax({
-            url: url + "/posting",
-            method: 'get',
+            url: url  + "/posting",
+            method: 'GET',
             dataType: 'json',
-            processData: true,
-            // contentType: true,
-            data: {'postingStatus': postingStatus},
-            // beforeSend: function (request) {
-            //     return request.setRequestHeader('X-CSRF-Token', $("meta[name='csrf-token']").attr('content'));
-            // },
+            // processData: false,
+            data: [{'_token':$('meta[name="token"]').attr('content'),'postingStatus': postingStatus}],
             success: function (data) {
                 console.log(data);
-                // $('#modal_title').text(customer_name);
-                // var t = $('#customer_users_datatable').DataTable();
-                // t.rows().remove().draw();
-                // for (var i = 0; i < data.length; i++) {
-                //     t.row.add([
-                //         i + 1,
-                //         data[i].name,
-                //         data[i].email,
-                //         '<span class="label label-info">User</span>',
-                //         '<span ' + ((data[i].status == 'Active') ? 'class="label label-success"' : 'class="label label-danger"') + '>' +
-                //         data[i].status + '</span>'
-                //     ]).draw(false);
-                // }
-                // $('#customer_users').modal('show');
+                $('#allposts').load();
+                $('#status').val('');
             },
+            error: function (xhr, textStatus, errorThrown) {
+                alert(errorThrown);
+            }
         });
        
     })
