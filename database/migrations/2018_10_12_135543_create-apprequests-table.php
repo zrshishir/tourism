@@ -18,7 +18,8 @@ class CreateApprequestsTable extends Migration
             $table->integer('user_id')->unsigned();
             $table->string('request', 255)->nullable();
             $table->integer('status')->default(0);
-            $table->timestamps();
+             $table->timestamps('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamps('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
             $table->foreign('user_id')->references('id')->on('users');
         });
     }

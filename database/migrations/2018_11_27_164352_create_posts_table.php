@@ -19,7 +19,8 @@ class CreatePostsTable extends Migration
             $table->integer('like')->default(0);
             $table->integer('spam')->default(0);
             $table->integer('users_id');
-            $table->timestamps();
+            $table->timestamps('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamps('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
         });
     }
 

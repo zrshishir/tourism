@@ -16,8 +16,10 @@ class DepartmentTableSeeder extends Seeder
         Model::unguard();
 
         Department::insert(array(
-                      array('name' => 'managing','created_at' => '2018-10-12 13:24:24','updated_at' => '2018-10-12 13:24:24'),
-                      array('name' => 'hr','created_at' => '2018-10-12 13:24:46','updated_at' => '2018-10-12 13:24:46')
+                      array('name' => 'admin','created_at' => '2018-10-12 13:24:24','updated_at' => '2018-10-12 13:24:24'),
+                      array('name' => 'user','created_at' => '2018-10-12 13:24:46','updated_at' => '2018-10-12 13:24:46')
+                      // array('name' => 'managing','created_at' => '2018-10-12 13:24:24','updated_at' => '2018-10-12 13:24:24'),
+                      // array('name' => 'hr','created_at' => '2018-10-12 13:24:46','updated_at' => '2018-10-12 13:24:46')
                     ));
     }
 }

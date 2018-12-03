@@ -10,7 +10,46 @@ function likeStatus(statusId){
        success: function(data){
            console.log(data);
            $("#likeCount"+statusId).text(data[0]);
-       }
+       },
+        error: function (xhr, textStatus, errorThrown) {
+                alert(errorThrown);
+        }
+    })
+}
+
+function postingComment(postId){
+
+    var comment = $('#comment').val();
+    var url = $('#hiddenUrl').val();
+    var urlimg = url + "/img/avatar.png";
+
+     $.ajax({
+       url: url + "/postComment",
+       method: "GET",
+       dataType: "json",
+    //    processData: false,
+       data:{'comment': comment, 'statusId': postId},
+       
+       success: function(data){
+           console.log(data);
+              $( "#statusNo"+postId ).append( '<div class="row media">'
+                    +'<div class="col-md-1">'
+                        +'<img class="align-self-center mr-3" src="'+ urlimg +'" alt="Generic placeholder image" height="32px" width="32px">'
+                    +'</div>'
+                    +'<div class="col-md-11 media-body">'
+                        +'<h5 class="mt-0">Top-aligned media</h5>'
+                        +'<p>'+data.comment+'</p>'
+                        +'</div>'
+                    +'</div>'
+                 +'</div>'
+             );
+              $("#comment").val('');
+              $("#statusNo"+postId).load();
+              $("#allposts").load();
+       },
+        error: function (xhr, textStatus, errorThrown) {
+                alert(errorThrown);
+        }
     })
 }
 
@@ -36,10 +75,15 @@ function postingStatus(){
                 +'<button type="button" class="btn btn-secondary btn-small" disabled id="likeCount'+data.id+'">'+data.like+'</button>'
                 +'<br/>'
                 +'<br/>'
+                +'<textarea class="form-control" placeholder="comment for status" name="comment" id="comment" cols="60" rows="1"></textarea>'
+                 +'<button class="btn btn-small btn-primary" type="button" onclick="postingComment('+data.id+')">Post</button>' + '</br>'
              );
         $("#status").val('');
         $('#allposts').load();
-       }
+       },
+        error: function (xhr, textStatus, errorThrown) {
+                alert(errorThrown);
+        }
     })
 }
 
@@ -70,13 +114,16 @@ $(document).ready(function(){
             $('#allposts').load();
             return true;
         },
+         error: function (xhr, textStatus, errorThrown) {
+                alert(errorThrown);
+            }
        
     });
 
     function makeString(comments, postId){
         var str = '';
         for (var i = comments.length - 1; i >= 0; i--) {
-             str += '<div class="row"><div class="row media">'
+             str += '<div class="row" id="statusNo'+postId+'"><div class="row media">'
                                 +'<div class="col-md-1">'
                                     +'<img class="align-self-center mr-3" src="'+ urlimg +'" alt="Generic placeholder image" height="32px" width="32px">'
                                 +'</div>'
@@ -88,7 +135,7 @@ $(document).ready(function(){
                              +'</div>'
         }
         str +=  '<textarea class="form-control" placeholder="comment for status" name="comment" id="comment" cols="60" rows="1"></textarea>'
-                 +'<button class="btn btn-small btn-primary" type="button" onclick="postComment('+postId+')">Post</button>' + '</br>'
+                 +'<button class="btn btn-small btn-primary" type="button" onclick="postingComment('+postId+')">Post</button>' + '</br>'
         return str;
     }
 

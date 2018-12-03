@@ -23,7 +23,8 @@ class CreateCommentsTable extends Migration
             $table->integer('reply_id')->default(0);
             $table->string('page_id')->default(0);
             $table->integer('users_id');
-            $table->timestamps();
+             $table->timestamps('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamps('updated_at')->default(DB::raw('CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP'));
   
         });
   

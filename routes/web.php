@@ -12,10 +12,12 @@
 */
 
 // posting
+Route::get('postComment', 'StatusPosting\StatusPostingController@postComment');
 Route::get('postData', 'StatusPosting\StatusPostingController@postData');
 Route::get('posting', 'StatusPosting\StatusPostingController@posting');
 Route::get('allposts', 'StatusPosting\StatusPostingController@allposts');
 Route::get('likeStatus', 'StatusPosting\StatusPostingController@likeStatus');
+// Route::get('likeStatus1', 'StatusPosting\StatusPostingController@likeStatus');
 
 Route::group(['middleware' => ['web']], function(){
     if (!env('INSTALLED', false)) {
