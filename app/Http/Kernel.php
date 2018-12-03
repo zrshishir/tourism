@@ -61,11 +61,11 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
 
-        // 'admin' => \App\Http\Middleware\CheckAdminMiddleware::class,
+        'admin' => \App\Http\Middleware\CheckAdminMiddleware::class,
         'superadmin' => \App\Http\Middleware\CheckSuperAdminMiddleware::class,
         'install' => \App\Http\Middleware\CheckInstallMiddleware::class,
         // 'superadminORcustomer' => \App\Http\Middleware\CheckSuperadminORCustomerMiddleware::class,
         // 'customer' => \App\Http\Middleware\CheckCustomerMiddleware::class,
-        // 'user' => \App\Http\Middleware\CheckUserMiddleware::class,
+        'user' => \App\Http\Middleware\CheckUserMiddleware::class,
     ];
 }

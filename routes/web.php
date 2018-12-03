@@ -34,6 +34,7 @@ Route::group(['middleware' => ['web']], function(){
     
     Route::resource('apprequest', 'Apprequest\ApprequestController');
     Route::get('apprequest/change_status/{user_id}', 'Apprequest\ApprequestController@change_status');
+    Route::resource('profile', 'Profile\ProfileController');
 
     // term and condition
     Route::get('termsCondition', 'HomeController@termsCondition');
@@ -43,6 +44,10 @@ Route::group(['middleware' => ['web']], function(){
     Route::resource('departments', 'Department\DepartmentController');
 });
 
+Route::group(['middleware' => ['web', 'auth', 'install']], function(){
+     // Route::resource('profile', 'Profile\ProfileController');
+});
+
 
 Route::group(['middleware' => ['web', 'auth', 'install', 'superadmin']], function(){
     Route::any('users/update_password', 'Users\UsersController@update_password');
@@ -50,7 +55,7 @@ Route::group(['middleware' => ['web', 'auth', 'install', 'superadmin']], functio
     Route::get('users/banned', 'Users\UsersController@banned_users');
     Route::get('users/change_status/{user_id}', 'Users\UsersController@change_status');
     Route::resource('users', 'Users\UsersController');
-    Route::resource('profile', 'Profile\ProfileController');
+    // Route::resource('profile', 'Profile\ProfileController');
 
      //activities only super admin can see it
      Route::get('activities/clear', 'Activity\ActivityController@clear_activities');
