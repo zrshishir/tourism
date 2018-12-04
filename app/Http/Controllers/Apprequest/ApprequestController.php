@@ -21,6 +21,9 @@ class ApprequestController extends Controller
     public function index()
    {
         $title = trans('common.request');
+        if(! Auth::check()){
+            return redirect('/');
+        }
         if(Auth::user()->role != 'user'){
             $allRequests = Apprequest::get();
         }else{

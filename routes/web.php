@@ -16,7 +16,7 @@ Route::get('postComment', 'StatusPosting\StatusPostingController@postComment');
 Route::get('postData', 'StatusPosting\StatusPostingController@postData');
 Route::get('posting', 'StatusPosting\StatusPostingController@posting');
 Route::get('allposts', 'StatusPosting\StatusPostingController@allposts');
-Route::get('likeStatus', 'StatusPosting\StatusPostingController@likeStatus');
+
 // Route::get('likeStatus1', 'StatusPosting\StatusPostingController@likeStatus');
 
 Route::group(['middleware' => ['web']], function(){
@@ -31,6 +31,7 @@ Route::group(['middleware' => ['web']], function(){
     
     Route::auth();
 
+    Route::get('likeStatus', 'StatusPosting\StatusPostingController@likeStatus');
     
     Route::resource('apprequest', 'Apprequest\ApprequestController');
     Route::get('apprequest/change_status/{user_id}', 'Apprequest\ApprequestController@change_status');

@@ -21,7 +21,9 @@ class StatusPostingController extends Controller
         $postId = $request->statusId;
         $userId = 1;
         $comment = $request->comment;
-
+        // if(! Auth::check()){
+        //     return response()->json('please login to comment this status');
+        // }
         $id = Comment::insertGetId([
             'comment' => $comment,
             'post_id' => $postId,
